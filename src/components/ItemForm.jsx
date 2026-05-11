@@ -4,15 +4,19 @@ import { useState } from "react";
 
 
 
-function ItemForm({setItems}) {
+function ItemForm({onItemFormSubmit}) {
 
   const [name, setName] = useState('')
   const [category, setCategory] = useState('Produce')
 
   function handleSubmit(e) {
   e.preventDefault()
-  const newItem = {name, category}
-  setItems(prev => [...prev, newItem])
+  const newItem = {
+    id: crypto.randomUUID(),
+    name, category}
+  onItemFormSubmit(newItem)
+  setName('')
+  setCategory('Produce')
 }
 
 function handleNameChange(e) {
